@@ -570,6 +570,18 @@
     return Number.isFinite(num) ? num : 0;
   }
 
+  function normalizeRentalValue(value) {
+    const parsed = parseRestValue(value);
+    if (!parsed) return 0;
+
+    // Hvis verdien er veldig lav antar vi at utleiefilen oppgir pris i tusen kroner
+    if (parsed > 0 && parsed < 10000) {
+      return parsed * 1000;
+    }
+
+    return parsed;
+  }
+
   function excelDateToJSDate(excelSerial) {
     const utcDays = Math.floor(excelSerial - 25569);
     const utcValue = utcDays * 86400;
@@ -1212,7 +1224,7 @@
           brand: normalizeBrand(row[RENTAL_IDX.F]),
           model: String(row[RENTAL_IDX.G] ?? "").trim(),
           serial: "",
-          value: parseRestValue(row[RENTAL_IDX.R]),
+          value: normalizeRentalValue(row[RENTAL_IDX.R]),
           note: ""
         });
       }
@@ -1352,7 +1364,7 @@
       brand: normalizeBrand(document.getElementById("modalBrand").value),
       model: document.getElementById("modalModel").value.trim(),
       serial: modalMode === "demo" ? document.getElementById("modalSerial").value.trim() : "",
-      value: parseRestValue(document.getElementById("modalValue").value),
+      value: modalMode === "rental" ? normalizeRentalValue(document.getElementById("modalValue").value) : parseRestValue(document.getElementById("modalValue").value),
       note: document.getElementById("modalNote").value.trim()
     };
 
