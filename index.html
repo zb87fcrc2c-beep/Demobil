@@ -1210,7 +1210,8 @@
 
         if (!normalizedReg) continue;
 
-        if (regExists("rental", normalizedReg) || seenRegsInThisImport.has(normalizedReg)) {
+        // Hvis regnummer finnes fra før skal bilen OPPDATERES i stedet for å hoppes over
+        if (seenRegsInThisImport.has(normalizedReg)) {
           duplicateCount++;
           continue;
         }
