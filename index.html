@@ -6,7 +6,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Dashboard – Demobiler og Bilutleie</title>
 <script src="https://cdn.jsdelivr.net/npm/xlsx/dist/xlsx.full.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
 <style>
   :root {
     --bg: #f4f6f8;
@@ -444,10 +444,12 @@
     </div>
   </div>
 
-<script>
+<script type="module">
+  import { createClient } from "https://esm.sh/@supabase/supabase-js@2";
+
   const SUPABASE_URL = "https://hemrutmprjgvrcikyuff.supabase.co";
   const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImhlbXJ1dG1wcmpndnJjaWt5dWZmIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzMyMjk1NTcsImV4cCI6MjA4ODgwNTU1N30.gHs-q4PHHxV7pzn-cWS1325DKBVkvAsI65MSV5kK9xg";
-  const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+  const supabase = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
   const demoAllowedCodes = new Set(["21106", "31106", "11106"]);
 
@@ -1368,6 +1370,17 @@
   document.getElementById("carModal").addEventListener("click", function (e) {
     if (e.target === this) closeCarModal();
   });
+
+  window.importDemoFile = importDemoFile;
+  window.importRentalFile = importRentalFile;
+  window.openAddModal = openAddModal;
+  window.openEditModal = openEditModal;
+  window.closeCarModal = closeCarModal;
+  window.saveCarModal = saveCarModal;
+  window.updateNote = updateNote;
+  window.deleteCar = deleteCar;
+  window.clearDemoData = clearDemoData;
+  window.clearRentalData = clearRentalData;
 
   subscribeRealtime();
   loadCarsFromSupabase();
