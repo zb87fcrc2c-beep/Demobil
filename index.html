@@ -359,6 +359,7 @@
               <th>Serienummer</th>
               <th>Dager</th>
               <th>Restverdi</th>
+              <th>Salgspris</th>
               <th>Merknad</th>
               <th>Handlinger</th>
             </tr>
@@ -393,6 +394,7 @@
               <th>Modell</th>
               <th>Dager</th>
               <th>Forhandlerpris</th>
+              <th>Salgspris</th>
               <th>Merknad</th>
               <th>Handlinger</th>
             </tr>
@@ -431,6 +433,10 @@
         <div class="form-field">
           <label id="modalValueLabel" for="modalValue">Restverdi</label>
           <input id="modalValue" type="text" />
+        </div>
+        <div class="form-field">
+          <label for="modalSalePrice">Salgspris</label>
+          <input id="modalSalePrice" type="text" />
         </div>
         <div class="form-field full">
           <label for="modalNote">Merknad</label>
@@ -820,6 +826,7 @@
         model: car.model || "",
         serial: car.serial || "",
         value: Number(car.value || 0),
+        salePrice: Number(car.sale_price || 0),
         note: car.note || ""
       }));
 
@@ -833,6 +840,7 @@
         model: car.model || "",
         serial: car.serial || "",
         value: Number(car.value || 0),
+        salePrice: Number(car.sale_price || 0),
         note: car.note || ""
       }));
 
@@ -849,6 +857,7 @@
       model: car.model || "",
       serial: car.serial || "",
       value: Number(car.value || 0),
+        salePrice: Number(car.sale_price || 0),
       note: car.note || ""
     };
 
@@ -878,6 +887,7 @@
       model: car.model || "",
       serial: car.serial || "",
       value: Number(car.value || 0),
+        salePrice: Number(car.sale_price || 0),
       note: car.note || ""
     }));
 
@@ -1006,6 +1016,7 @@
         <td>${escapeHtml(car.serial || "")}</td>
         <td class="${ageClass}">${age === "" ? "" : age}</td>
         <td>${formatNumber(car.value)} kr</td>
+        <td>${formatNumber(car.salePrice || 0)} kr</td>
         <td>
           <input
             class="note-input"
@@ -1066,6 +1077,7 @@
         <td>${escapeHtml(car.model)}</td>
         <td class="${ageClass}">${age === "" ? "" : age}</td>
         <td>${formatNumber(car.value)} kr</td>
+        <td>${formatNumber(car.salePrice || 0)} kr</td>
         <td>
           <input
             class="note-input"
@@ -1305,6 +1317,7 @@
     document.getElementById("modalSerial").value = "";
     document.getElementById("modalValue").value = "";
     document.getElementById("modalNote").value = "";
+    document.getElementById("modalSalePrice").value = "";
 
     document.getElementById("serialField").style.display = type === "demo" ? "flex" : "none";
     document.getElementById("modalValueLabel").textContent = type === "demo" ? "Restverdi" : "Forhandlerpris";
@@ -1328,6 +1341,7 @@
     document.getElementById("modalSerial").value = car.serial || "";
     document.getElementById("modalValue").value = car.value || "";
     document.getElementById("modalNote").value = car.note || "";
+    document.getElementById("modalSalePrice").value = car.salePrice || "";
 
     document.getElementById("serialField").style.display = type === "demo" ? "flex" : "none";
     document.getElementById("modalValueLabel").textContent = type === "demo" ? "Restverdi" : "Forhandlerpris";
@@ -1366,6 +1380,7 @@
       model: document.getElementById("modalModel").value.trim(),
       serial: modalMode === "demo" ? document.getElementById("modalSerial").value.trim() : "",
       value: modalMode === "rental" ? normalizeRentalValue(document.getElementById("modalValue").value) : parseRestValue(document.getElementById("modalValue").value),
+      salePrice: parseRestValue(document.getElementById("modalSalePrice").value),
       note: document.getElementById("modalNote").value.trim()
     };
 
