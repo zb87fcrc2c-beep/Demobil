@@ -826,8 +826,8 @@
         model: car.model || "",
         serial: car.serial || "",
         value: Number(car.value || 0),
-        salePrice: Number(car.sale_price || 0),
-        note: car.note || ""
+      sale_price: Number(car.salePrice || 0),
+      note: car.note || ""
       }));
 
     rentalCars = (data || [])
@@ -840,8 +840,8 @@
         model: car.model || "",
         serial: car.serial || "",
         value: Number(car.value || 0),
-        salePrice: Number(car.sale_price || 0),
-        note: car.note || ""
+      sale_price: Number(car.salePrice || 0),
+      note: car.note || ""
       }));
 
     renderAll();
@@ -857,7 +857,7 @@
       model: car.model || "",
       serial: car.serial || "",
       value: Number(car.value || 0),
-        salePrice: Number(car.sale_price || 0),
+      sale_price: Number(car.salePrice || 0),
       note: car.note || ""
     };
 
@@ -887,7 +887,7 @@
       model: car.model || "",
       serial: car.serial || "",
       value: Number(car.value || 0),
-        salePrice: Number(car.sale_price || 0),
+      sale_price: Number(car.salePrice || 0),
       note: car.note || ""
     }));
 
@@ -1165,6 +1165,7 @@
           model: String(modelCell?.w ?? modelCell?.v ?? "").trim(),
           serial: String(serialCell?.w ?? serialCell?.v ?? "").trim(),
           value: parseRestValue(valueCell?.w ?? valueCell?.v ?? ""),
+          salePrice: 0,
           note: ""
         });
       }
@@ -1238,6 +1239,7 @@
           model: String(row[RENTAL_IDX.G] ?? "").trim(),
           serial: "",
           value: normalizeRentalValue(row[RENTAL_IDX.R]),
+          salePrice: 0,
           note: ""
         });
       }
