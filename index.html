@@ -1,12 +1,10 @@
-<!DOCTYPE
- html>
+<!DOCTYPE html>
 <html lang="no">
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Dashboard – Demobiler og Bilutleie</title>
 <script src="https://cdn.jsdelivr.net/npm/xlsx/dist/xlsx.full.min.js"></script>
-
 <style>
   :root {
     --bg: #f4f6f8;
@@ -36,17 +34,11 @@
     color: var(--text);
   }
 
-  h1, h2 {
-    margin: 0 0 20px 0;
-  }
-
+  h1, h2 { margin: 0 0 20px 0; }
   h1 { font-size: 28px; }
   h2 { font-size: 24px; margin-top: 8px; }
 
-  .wrap {
-    max-width: 1600px;
-    margin: 0 auto;
-  }
+  .wrap { max-width: 1600px; margin: 0 auto; }
 
   .card {
     background: var(--card);
@@ -56,10 +48,7 @@
     margin-bottom: 18px;
   }
 
-  .section-divider {
-    margin: 36px 0 18px;
-    border-top: 2px solid var(--line);
-  }
+  .section-divider { margin: 36px 0 18px; border-top: 2px solid var(--line); }
 
   .topbar {
     display: flex;
@@ -85,33 +74,13 @@
     font-weight: 600;
   }
 
-  button:hover {
-    background: var(--primary-hover);
-  }
-
-  button.secondary {
-    background: var(--secondary);
-  }
-
-  button.secondary:hover {
-    background: var(--secondary-hover);
-  }
-
-  button.success {
-    background: var(--success);
-  }
-
-  button.success:hover {
-    background: var(--success-hover);
-  }
-
-  button.danger {
-    background: var(--danger);
-  }
-
-  button.danger:hover {
-    background: var(--danger-hover);
-  }
+  button:hover { background: var(--primary-hover); }
+  button.secondary { background: var(--secondary); }
+  button.secondary:hover { background: var(--secondary-hover); }
+  button.success { background: var(--success); }
+  button.success:hover { background: var(--success-hover); }
+  button.danger { background: var(--danger); }
+  button.danger:hover { background: var(--danger-hover); }
 
   .stats {
     display: grid;
@@ -126,20 +95,10 @@
     padding: 16px;
   }
 
-  .label {
-    font-size: 13px;
-    color: var(--muted);
-    margin-bottom: 6px;
-  }
+  .label { font-size: 13px; color: var(--muted); margin-bottom: 6px; }
+  .value { font-size: 26px; font-weight: 700; }
 
-  .value {
-    font-size: 26px;
-    font-weight: 700;
-  }
-
-  .table-wrap {
-    overflow-x: auto;
-  }
+  .table-wrap { overflow-x: auto; }
 
   table {
     width: 100%;
@@ -165,9 +124,7 @@
     background: white;
   }
 
-  tbody tr:hover td {
-    background: #fafcff;
-  }
+  tbody tr:hover td { background: #fafcff; }
 
   .brand-group td {
     background: var(--brand-row) !important;
@@ -187,35 +144,11 @@
     font: inherit;
   }
 
-  .actions {
-    display: flex;
-    gap: 8px;
-    flex-wrap: wrap;
-  }
-
-  .small-btn {
-    padding: 8px 10px;
-    font-size: 13px;
-    border-radius: 7px;
-  }
-
-  .empty {
-    color: var(--muted);
-    padding: 18px 0 6px;
-  }
-
-  .hint {
-    color: var(--muted);
-    font-size: 13px;
-    margin-top: 8px;
-  }
-
-  .import-result {
-    margin-top: 10px;
-    font-size: 14px;
-    color: var(--text);
-    font-weight: 600;
-  }
+  .actions { display: flex; gap: 8px; flex-wrap: wrap; }
+  .small-btn { padding: 8px 10px; font-size: 13px; border-radius: 7px; }
+  .empty { color: var(--muted); padding: 18px 0 6px; }
+  .hint { color: var(--muted); font-size: 13px; margin-top: 8px; }
+  .import-result { margin-top: 10px; font-size: 14px; color: var(--text); font-weight: 600; }
 
   .modal-backdrop {
     position: fixed;
@@ -237,11 +170,7 @@
     box-shadow: 0 20px 40px rgba(0,0,0,0.2);
   }
 
-  .modal h3 {
-    margin-top: 0;
-    margin-bottom: 18px;
-    font-size: 22px;
-  }
+  .modal h3 { margin-top: 0; margin-bottom: 18px; font-size: 22px; }
 
   .form-grid {
     display: grid;
@@ -249,20 +178,9 @@
     gap: 14px;
   }
 
-  .form-field {
-    display: flex;
-    flex-direction: column;
-    gap: 6px;
-  }
-
-  .form-field.full {
-    grid-column: 1 / -1;
-  }
-
-  .form-field label {
-    font-size: 14px;
-    color: var(--muted);
-  }
+  .form-field { display: flex; flex-direction: column; gap: 6px; }
+  .form-field.full { grid-column: 1 / -1; }
+  .form-field label { font-size: 14px; color: var(--muted); }
 
   .form-field input,
   .form-field textarea {
@@ -273,32 +191,12 @@
     width: 100%;
   }
 
-  .form-field textarea {
-    min-height: 96px;
-    resize: vertical;
-  }
+  .form-field textarea { min-height: 96px; resize: vertical; }
+  .modal-actions { display: flex; justify-content: flex-end; gap: 10px; margin-top: 18px; }
 
-  .modal-actions {
-    display: flex;
-    justify-content: flex-end;
-    gap: 10px;
-    margin-top: 18px;
-  }
-
-  .age-green {
-    color: #166534;
-    font-weight: 700;
-  }
-
-  .age-yellow {
-    color: #a16207;
-    font-weight: 700;
-  }
-
-  .age-red {
-    color: #b91c1c;
-    font-weight: 700;
-  }
+  .age-green { color: #166534; font-weight: 700; }
+  .age-yellow { color: #a16207; font-weight: 700; }
+  .age-red { color: #b91c1c; font-weight: 700; }
 
   @media (max-width: 900px) {
     body { padding: 18px; }
@@ -328,22 +226,10 @@
 
     <div class="card">
       <div class="stats">
-        <div class="statbox">
-          <div class="label">Antall demobiler</div>
-          <div id="demoCarCount" class="value">0</div>
-        </div>
-        <div class="statbox">
-          <div class="label">Total restverdi</div>
-          <div id="demoTotalValue" class="value">0 kr</div>
-        </div>
-        <div class="statbox">
-          <div class="label">Antall merker</div>
-          <div id="demoBrandCount" class="value">0</div>
-        </div>
-        <div class="statbox">
-          <div class="label">Dubletter hoppet over sist</div>
-          <div id="demoDuplicateCount" class="value">0</div>
-        </div>
+        <div class="statbox"><div class="label">Antall demobiler</div><div id="demoCarCount" class="value">0</div></div>
+        <div class="statbox"><div class="label">Total restverdi</div><div id="demoTotalValue" class="value">0 kr</div></div>
+        <div class="statbox"><div class="label">Antall merker</div><div id="demoBrandCount" class="value">0</div></div>
+        <div class="statbox"><div class="label">Dubletter hoppet over sist</div><div id="demoDuplicateCount" class="value">0</div></div>
       </div>
     </div>
 
@@ -410,38 +296,14 @@
     <div class="modal">
       <h3 id="modalTitle">Legg til bil</h3>
       <div class="form-grid">
-        <div class="form-field">
-          <label for="modalDate">Inn dato</label>
-          <input id="modalDate" type="text" placeholder="f.eks. 12.03.2026" />
-        </div>
-        <div class="form-field">
-          <label for="modalReg">Regnummer</label>
-          <input id="modalReg" type="text" />
-        </div>
-        <div class="form-field">
-          <label for="modalBrand">Merke</label>
-          <input id="modalBrand" type="text" />
-        </div>
-        <div class="form-field">
-          <label for="modalModel">Modell</label>
-          <input id="modalModel" type="text" />
-        </div>
-        <div class="form-field" id="serialField">
-          <label for="modalSerial">Serienummer</label>
-          <input id="modalSerial" type="text" />
-        </div>
-        <div class="form-field">
-          <label id="modalValueLabel" for="modalValue">Restverdi</label>
-          <input id="modalValue" type="text" />
-        </div>
-        <div class="form-field">
-          <label for="modalSalePrice">Salgspris</label>
-          <input id="modalSalePrice" type="text" />
-        </div>
-        <div class="form-field full">
-          <label for="modalNote">Merknad</label>
-          <textarea id="modalNote"></textarea>
-        </div>
+        <div class="form-field"><label for="modalDate">Inn dato</label><input id="modalDate" type="text" placeholder="f.eks. 12.03.2026" /></div>
+        <div class="form-field"><label for="modalReg">Regnummer</label><input id="modalReg" type="text" /></div>
+        <div class="form-field"><label for="modalBrand">Merke</label><input id="modalBrand" type="text" /></div>
+        <div class="form-field"><label for="modalModel">Modell</label><input id="modalModel" type="text" /></div>
+        <div class="form-field" id="serialField"><label for="modalSerial">Serienummer</label><input id="modalSerial" type="text" /></div>
+        <div class="form-field"><label id="modalValueLabel" for="modalValue">Restverdi</label><input id="modalValue" type="text" /></div>
+        <div class="form-field"><label for="modalSalePrice">Salgspris</label><input id="modalSalePrice" type="text" /></div>
+        <div class="form-field full"><label for="modalNote">Merknad</label><textarea id="modalNote"></textarea></div>
       </div>
       <div class="modal-actions">
         <button class="secondary" onclick="closeCarModal()">Avbryt</button>
@@ -458,119 +320,51 @@
   const supabase = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
   const demoAllowedCodes = new Set(["21106", "31106", "11106"]);
-
   let demoCars = [];
   let rentalCars = [];
-
   let demoLastDuplicateCount = 0;
   let rentalLastDuplicateCount = 0;
-
   let modalMode = "demo";
   let modalAction = "add";
   let modalEditIndex = null;
 
   function colIndex(letter) {
     let index = 0;
-    for (let i = 0; i < letter.length; i++) {
-      index = index * 26 + (letter.charCodeAt(i) - 64);
-    }
+    for (let i = 0; i < letter.length; i++) index = index * 26 + (letter.charCodeAt(i) - 64);
     return index - 1;
   }
 
-  const DEMO_IDX = {
-    A: colIndex("A"),
-    B: colIndex("B"),
-    C: colIndex("C"),
-    D: colIndex("D"),
-    M: colIndex("M"),
-    Q: colIndex("Q"),
-    AE: colIndex("AE")
-  };
+  const DEMO_IDX = { A: colIndex("A"), B: colIndex("B"), C: colIndex("C"), D: colIndex("D"), M: colIndex("M"), Q: colIndex("Q"), AE: colIndex("AE") };
+  const RENTAL_IDX = { E: colIndex("E"), F: colIndex("F"), G: colIndex("G"), H: colIndex("H"), R: colIndex("R") };
 
-  const RENTAL_IDX = {
-    E: colIndex("E"),
-    F: colIndex("F"),
-    G: colIndex("G"),
-    H: colIndex("H"),
-    R: colIndex("R")
-  };
-
-  function generateId() {
-    if (window.crypto && crypto.randomUUID) {
-      return crypto.randomUUID();
-    }
-    return "id_" + Date.now() + "_" + Math.random().toString(16).slice(2);
-  }
-
-  function normalizeReg(reg) {
-    return String(reg || "").trim().toUpperCase();
-  }
+  function generateId() { return window.crypto && crypto.randomUUID ? crypto.randomUUID() : "id_" + Date.now() + "_" + Math.random().toString(16).slice(2); }
+  function normalizeReg(reg) { return String(reg || "").trim().toUpperCase(); }
 
   function normalizeBrand(value) {
     const raw = String(value || "").trim();
     if (!raw) return "";
-
     const firstWord = raw.split(/\s+/)[0];
-
-    const map = {
-      peugeot: "Peugeot",
-      toyota: "Toyota",
-      opel: "Opel",
-      citroen: "Citroën",
-      "citroën": "Citroën",
-      mercedes: "Mercedes-Benz",
-      "mercedes-benz": "Mercedes-Benz",
-      volkswagen: "Volkswagen",
-      vw: "Volkswagen",
-      nissan: "Nissan",
-      ford: "Ford",
-      kia: "Kia",
-      hyundai: "Hyundai",
-      bmw: "BMW",
-      audi: "Audi",
-      skoda: "Škoda",
-      "škoda": "Škoda",
-      renault: "Renault",
-      volvo: "Volvo",
-      mazda: "Mazda",
-      suzuki: "Suzuki",
-      tesla: "Tesla",
-      smart: "Smart"
-    };
-
+    const map = { peugeot:"Peugeot", toyota:"Toyota", opel:"Opel", citroen:"Citroën", "citroën":"Citroën", mercedes:"Mercedes-Benz", "mercedes-benz":"Mercedes-Benz", volkswagen:"Volkswagen", vw:"Volkswagen", nissan:"Nissan", ford:"Ford", kia:"Kia", hyundai:"Hyundai", bmw:"BMW", audi:"Audi", skoda:"Škoda", "škoda":"Škoda", renault:"Renault", volvo:"Volvo", mazda:"Mazda", suzuki:"Suzuki", tesla:"Tesla", smart:"Smart" };
     const key = firstWord.toLowerCase();
     return map[key] || (firstWord.charAt(0).toUpperCase() + firstWord.slice(1).toLowerCase());
   }
 
   function parseRestValue(value) {
     if (value === null || value === undefined || value === "") return 0;
-
-    if (typeof value === "number" && Number.isFinite(value)) {
-      return Math.trunc(value);
-    }
-
+    if (typeof value === "number" && Number.isFinite(value)) return Math.trunc(value);
     let str = String(value).trim();
     if (!str) return 0;
-
     str = str.replace(/\s/g, "");
-
     if (str.includes(",")) {
-      str = str.split(",")[0];
-      str = str.replace(/[^\d-]/g, "");
+      str = str.split(",")[0].replace(/[^\d-]/g, "");
       const num = parseInt(str, 10);
       return Number.isFinite(num) ? num : 0;
     }
-
     if (str.includes(".")) {
       const parts = str.split(".");
       const lastPart = parts[parts.length - 1];
-      if (/^\d{1,2}$/.test(lastPart)) {
-        str = parts.slice(0, -1).join("");
-      } else {
-        str = parts.join("");
-      }
+      str = /^\d{1,2}$/.test(lastPart) ? parts.slice(0, -1).join("") : parts.join("");
     }
-
     str = str.replace(/[^\d-]/g, "");
     const num = parseInt(str, 10);
     return Number.isFinite(num) ? num : 0;
@@ -579,13 +373,7 @@
   function normalizeRentalValue(value) {
     const parsed = parseRestValue(value);
     if (!parsed) return 0;
-
-    // Hvis verdien er veldig lav antar vi at utleiefilen oppgir pris i tusen kroner
-    if (parsed > 0 && parsed < 10000) {
-      return parsed * 1000;
-    }
-
-    return parsed;
+    return parsed > 0 && parsed < 10000 ? parsed * 1000 : parsed;
   }
 
   function excelDateToJSDate(excelSerial) {
@@ -595,378 +383,116 @@
     return new Date(dateInfo.getFullYear(), dateInfo.getMonth(), dateInfo.getDate());
   }
 
-  function normalizeYear(year) {
-    year = Number(year);
-    if (!Number.isFinite(year)) return year;
-    if (year < 100) return 2000 + year;
-    return year;
-  }
-
-  function isValidDateParts(day, month, year) {
-    if (!Number.isFinite(day) || !Number.isFinite(month) || !Number.isFinite(year)) return false;
-    if (month < 1 || month > 12) return false;
-    if (day < 1 || day > 31) return false;
-
-    const d = new Date(year, month - 1, day);
-    return d.getFullYear() === year && d.getMonth() === month - 1 && d.getDate() === day;
-  }
-
-  function createDateFromParts(day, month, year) {
-    if (!isValidDateParts(day, month, year)) return null;
-    return new Date(year, month - 1, day);
-  }
+  function normalizeYear(year) { year = Number(year); if (!Number.isFinite(year)) return year; return year < 100 ? 2000 + year : year; }
+  function isValidDateParts(day, month, year) { if (!Number.isFinite(day) || !Number.isFinite(month) || !Number.isFinite(year)) return false; if (month < 1 || month > 12 || day < 1 || day > 31) return false; const d = new Date(year, month - 1, day); return d.getFullYear() === year && d.getMonth() === month - 1 && d.getDate() === day; }
+  function createDateFromParts(day, month, year) { return isValidDateParts(day, month, year) ? new Date(year, month - 1, day) : null; }
 
   function parseDemoDateToObject(value) {
     if (value === null || value === undefined || value === "") return null;
-
-    if (value instanceof Date && !isNaN(value)) {
-      return new Date(value.getFullYear(), value.getMonth(), value.getDate());
-    }
-
-    if (typeof value === "number" && Number.isFinite(value)) {
-      const d = excelDateToJSDate(value);
-      return isNaN(d) ? null : d;
-    }
-
+    if (value instanceof Date && !isNaN(value)) return new Date(value.getFullYear(), value.getMonth(), value.getDate());
+    if (typeof value === "number" && Number.isFinite(value)) { const d = excelDateToJSDate(value); return isNaN(d) ? null : d; }
     let str = String(value).trim();
     if (!str) return null;
-
     str = str.replace(/\//g, ".").replace(/-/g, ".").replace(/\s+/g, " ").trim();
-
     let m = str.match(/^(\d{1,2})\.(\d{1,2})\.(\d{2,4})$/);
-    if (m) {
-      const day = Number(m[1]);
-      const month = Number(m[2]);
-      const year = normalizeYear(m[3]);
-      const d = createDateFromParts(day, month, year);
-      if (d) return d;
-    }
-
+    if (m) return createDateFromParts(Number(m[1]), Number(m[2]), normalizeYear(m[3]));
     m = str.match(/^(\d{4})\.(\d{1,2})\.(\d{1,2})$/);
-    if (m) {
-      const year = Number(m[1]);
-      const month = Number(m[2]);
-      const day = Number(m[3]);
-      const d = createDateFromParts(day, month, year);
-      if (d) return d;
-    }
-
+    if (m) return createDateFromParts(Number(m[3]), Number(m[2]), Number(m[1]));
     return null;
   }
 
-  function formatDemoDateForDisplay(value) {
-    const d = parseDemoDateToObject(value);
-    if (!d) return String(value || "");
-    return d.toLocaleDateString("no-NO");
-  }
+  function formatDemoDateForDisplay(value) { const d = parseDemoDateToObject(value); return d ? d.toLocaleDateString("no-NO") : String(value || ""); }
 
   function cleanRentalDateString(input) {
-    let str = String(input || "").trim().toLowerCase();
-
-    str = str
-      .replace(/,/g, " ")
-      .replace(/\s+/g, " ")
-      .trim();
-
-    const weekdays = [
-      "mandag", "tirsdag", "onsdag", "torsdag", "fredag", "lørdag", "laurdag", "søndag"
-    ];
-
+    let str = String(input || "").trim().toLowerCase().replace(/,/g, " ").replace(/\s+/g, " ").trim();
+    const weekdays = ["mandag", "tirsdag", "onsdag", "torsdag", "fredag", "lørdag", "laurdag", "søndag"];
     for (const dayName of weekdays) {
-      if (str.startsWith(dayName + " ")) {
-        str = str.substring(dayName.length).trim();
-        break;
-      }
+      if (str.startsWith(dayName + " ")) { str = str.substring(dayName.length).trim(); break; }
     }
-
     return str;
   }
 
   function parseRentalDateToObject(value) {
     if (value === null || value === undefined || value === "") return null;
-
-    if (value instanceof Date && !isNaN(value)) {
-      return new Date(value.getFullYear(), value.getMonth(), value.getDate());
-    }
-
-    if (typeof value === "number" && Number.isFinite(value)) {
-      const d = excelDateToJSDate(value);
-      return isNaN(d) ? null : d;
-    }
-
+    if (value instanceof Date && !isNaN(value)) return new Date(value.getFullYear(), value.getMonth(), value.getDate());
+    if (typeof value === "number" && Number.isFinite(value)) { const d = excelDateToJSDate(value); return isNaN(d) ? null : d; }
     let str = cleanRentalDateString(value);
     if (!str) return null;
-
-    if (/^\d+(\.\d+)?$/.test(str)) {
-      const d = excelDateToJSDate(Number(str));
-      return isNaN(d) ? null : d;
-    }
-
+    if (/^\d+(\.\d+)?$/.test(str)) { const d = excelDateToJSDate(Number(str)); return isNaN(d) ? null : d; }
     str = str.replace(/\//g, ".").replace(/-/g, ".");
-
-    const monthMap = {
-      januar: 1, februar: 2, mars: 3, april: 4, mai: 5, juni: 6,
-      juli: 7, august: 8, september: 9, oktober: 10, november: 11, desember: 12
-    };
-
+    const monthMap = { januar:1, februar:2, mars:3, april:4, mai:5, juni:6, juli:7, august:8, september:9, oktober:10, november:11, desember:12 };
     const textMatch = str.match(/^(\d{1,2})\.\s*([a-zæøå]+)\s+(\d{2,4})$/i);
-    if (textMatch) {
-      const day = Number(textMatch[1]);
-      const month = monthMap[textMatch[2].toLowerCase()];
-      const year = normalizeYear(textMatch[3]);
-      const d = createDateFromParts(day, month, year);
-      if (d) return d;
-    }
-
+    if (textMatch) return createDateFromParts(Number(textMatch[1]), monthMap[textMatch[2].toLowerCase()], normalizeYear(textMatch[3]));
     const numericMatch = str.match(/^(\d{1,2})\.(\d{1,2})\.(\d{2,4})$/);
-    if (numericMatch) {
-      const day = Number(numericMatch[1]);
-      const month = Number(numericMatch[2]);
-      const year = normalizeYear(numericMatch[3]);
-      const d = createDateFromParts(day, month, year);
-      if (d) return d;
-    }
-
+    if (numericMatch) return createDateFromParts(Number(numericMatch[1]), Number(numericMatch[2]), normalizeYear(numericMatch[3]));
     const isoMatch = str.match(/^(\d{4})\.(\d{1,2})\.(\d{1,2})$/);
-    if (isoMatch) {
-      const year = Number(isoMatch[1]);
-      const month = Number(isoMatch[2]);
-      const day = Number(isoMatch[3]);
-      const d = createDateFromParts(day, month, year);
-      if (d) return d;
-    }
-
+    if (isoMatch) return createDateFromParts(Number(isoMatch[3]), Number(isoMatch[2]), Number(isoMatch[1]));
     return null;
   }
 
-  function formatRentalDateForDisplay(value) {
-    const d = parseRentalDateToObject(value);
-    if (!d) return String(value || "");
-    return d.toLocaleDateString("no-NO");
-  }
-
-  function calculateAgeWithParser(dateValue, parserFn) {
-    const date = parserFn(dateValue);
-    if (!date) return "";
-
-    const now = new Date();
-    const today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
-    const diff = today - date;
-    const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-
-    return Math.max(0, days);
-  }
-
-  function getAgeClass(days) {
-    if (days === "") return "";
-    if (days <= 60) return "age-green";
-    if (days <= 150) return "age-yellow";
-    return "age-red";
-  }
-
-  function formatNumber(num) {
-    return Number(num || 0).toLocaleString("no-NO");
-  }
-
-  function escapeHtml(value) {
-    return String(value ?? "")
-      .replace(/&/g, "&amp;")
-      .replace(/</g, "&lt;")
-      .replace(/>/g, "&gt;")
-      .replace(/"/g, "&quot;")
-      .replace(/'/g, "&#039;");
-  }
-
-  function escapeAttribute(value) {
-    return String(value ?? "")
-      .replace(/&/g, "&amp;")
-      .replace(/"/g, "&quot;");
-  }
-
-  function getCars(type) {
-    return type === "demo" ? demoCars : rentalCars;
-  }
-
-  function setCars(type, value) {
-    if (type === "demo") {
-      demoCars = value;
-    } else {
-      rentalCars = value;
-    }
-  }
+  function formatRentalDateForDisplay(value) { const d = parseRentalDateToObject(value); return d ? d.toLocaleDateString("no-NO") : String(value || ""); }
+  function calculateAgeWithParser(dateValue, parserFn) { const date = parserFn(dateValue); if (!date) return ""; const now = new Date(); const today = new Date(now.getFullYear(), now.getMonth(), now.getDate()); return Math.max(0, Math.floor((today - date) / (1000 * 60 * 60 * 24))); }
+  function getAgeClass(days) { if (days === "") return ""; if (days <= 60) return "age-green"; if (days <= 150) return "age-yellow"; return "age-red"; }
+  function formatNumber(num) { return Number(num || 0).toLocaleString("no-NO"); }
+  function escapeHtml(value) { return String(value ?? "").replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/\"/g, "&quot;").replace(/'/g, "&#039;"); }
+  function escapeAttribute(value) { return String(value ?? "").replace(/&/g, "&amp;").replace(/\"/g, "&quot;"); }
+  function getCars(type) { return type === "demo" ? demoCars : rentalCars; }
+  function setCars(type, value) { type === "demo" ? demoCars = value : rentalCars = value; }
 
   function regExists(type, reg, excludeIndex = null) {
     const normalizedReg = normalizeReg(reg);
     if (!normalizedReg) return false;
-
-    return getCars(type).some((car, index) => {
-      if (excludeIndex !== null && index === excludeIndex) return false;
-      return normalizeReg(car.reg) === normalizedReg;
-    });
+    return getCars(type).some((car, index) => excludeIndex !== null && index === excludeIndex ? false : normalizeReg(car.reg) === normalizedReg);
   }
 
   async function loadCarsFromSupabase() {
-    const { data, error } = await supabase
-      .from("cars")
-      .select("*");
+    const { data, error } = await supabase.from("cars").select("*");
+    if (error) { console.error(error); alert("Feil ved lasting av data fra Supabase."); return; }
 
-    if (error) {
-      console.error(error);
-      alert("Feil ved lasting av data fra Supabase.");
-      return;
-    }
-
-    demoCars = (data || [])
-      .filter(car => car.category === "demo")
-      .map(car => ({
-        id: car.id,
-        date: car.date_text || "",
-        reg: car.reg || "",
-        brand: car.brand || "",
-        model: car.model || "",
-        serial: car.serial || "",
-        value: Number(car.value || 0),
-        salePrice: Number(car.sale_price || 0),
-        images: Boolean(car.images || false),
-        note: car.note || ""
-      }));
-
-    rentalCars = (data || [])
-      .filter(car => car.category === "rental")
-      .map(car => ({
-        id: car.id,
-        date: car.date_text || "",
-        reg: car.reg || "",
-        brand: car.brand || "",
-        model: car.model || "",
-        serial: car.serial || "",
-        value: Number(car.value || 0),
-        salePrice: Number(car.sale_price || 0),
-        images: Boolean(car.images || false),
-        note: car.note || ""
-      }));
-
+    demoCars = (data || []).filter(car => car.category === "demo").map(car => ({ id: car.id, date: car.date_text || "", reg: car.reg || "", brand: car.brand || "", model: car.model || "", serial: car.serial || "", value: Number(car.value || 0), salePrice: Number(car.sale_price || 0), note: car.note || "" }));
+    rentalCars = (data || []).filter(car => car.category === "rental").map(car => ({ id: car.id, date: car.date_text || "", reg: car.reg || "", brand: car.brand || "", model: car.model || "", serial: car.serial || "", value: Number(car.value || 0), salePrice: Number(car.sale_price || 0), note: car.note || "" }));
     renderAll();
   }
 
   async function saveCarToSupabase(type, car) {
-    const payload = {
-      id: car.id || generateId(),
-      category: type,
-      date_text: car.date || "",
-      reg: normalizeReg(car.reg),
-      brand: car.brand || "",
-      model: car.model || "",
-      serial: car.serial || "",
-      value: Number(car.value || 0),
-      sale_price: Number(car.salePrice || 0),
-      images: Boolean(car.images || false),
-      note: car.note || ""
-    };
-
-    const { error } = await supabase
-      .from("cars")
-      .upsert(payload, { onConflict: "category,reg" });
-
-    if (error) {
-      console.error(error);
-      alert("Feil ved lagring i Supabase.");
-      return false;
-    }
-
+    const payload = { id: car.id || generateId(), category: type, date_text: car.date || "", reg: normalizeReg(car.reg), brand: car.brand || "", model: car.model || "", serial: car.serial || "", value: Number(car.value || 0), sale_price: Number(car.salePrice || 0), note: car.note || "" };
+    const { error } = await supabase.from("cars").upsert(payload, { onConflict: "category,reg" });
+    if (error) { console.error(error); alert("Feil ved lagring i Supabase."); return false; }
     await loadCarsFromSupabase();
     return true;
   }
 
   async function saveManyCarsToSupabase(type, cars) {
     if (!cars.length) return true;
-
-    const payload = cars.map(car => ({
-      id: car.id || generateId(),
-      category: type,
-      date_text: car.date || "",
-      reg: normalizeReg(car.reg),
-      brand: car.brand || "",
-      model: car.model || "",
-      serial: car.serial || "",
-      value: Number(car.value || 0),
-      sale_price: Number(car.salePrice || 0),
-      images: Boolean(car.images || false),
-      note: car.note || ""
-    }));
-
-    const { error } = await supabase
-      .from("cars")
-      .upsert(payload, { onConflict: "category,reg" });
-
-    if (error) {
-      console.error(error);
-      alert("Feil ved import til Supabase.");
-      return false;
-    }
-
+    const payload = cars.map(car => ({ id: car.id || generateId(), category: type, date_text: car.date || "", reg: normalizeReg(car.reg), brand: car.brand || "", model: car.model || "", serial: car.serial || "", value: Number(car.value || 0), sale_price: Number(car.salePrice || 0), note: car.note || "" }));
+    const { error } = await supabase.from("cars").upsert(payload, { onConflict: "category,reg" });
+    if (error) { console.error(error); alert("Feil ved import til Supabase."); return false; }
     await loadCarsFromSupabase();
     return true;
   }
 
   async function updateCarNoteInSupabase(id, value) {
-    const { error } = await supabase
-      .from("cars")
-      .update({ note: value || "" })
-      .eq("id", id);
-
-    if (error) {
-      console.error(error);
-      alert("Feil ved lagring av merknad.");
-      return false;
-    }
-
+    const { error } = await supabase.from("cars").update({ note: value || "" }).eq("id", id);
+    if (error) { console.error(error); alert("Feil ved lagring av merknad."); return false; }
     return true;
   }
 
   async function deleteCarFromSupabase(id) {
-    const { error } = await supabase
-      .from("cars")
-      .delete()
-      .eq("id", id);
-
-    if (error) {
-      console.error(error);
-      alert("Feil ved sletting.");
-      return false;
-    }
-
+    const { error } = await supabase.from("cars").delete().eq("id", id);
+    if (error) { console.error(error); alert("Feil ved sletting."); return false; }
     await loadCarsFromSupabase();
     return true;
   }
 
   async function clearCarsByType(type) {
-    const { error } = await supabase
-      .from("cars")
-      .delete()
-      .eq("category", type);
-
-    if (error) {
-      console.error(error);
-      alert("Feil ved sletting av alle biler.");
-      return false;
-    }
-
+    const { error } = await supabase.from("cars").delete().eq("category", type);
+    if (error) { console.error(error); alert("Feil ved sletting av alle biler."); return false; }
     await loadCarsFromSupabase();
     return true;
   }
 
   function subscribeRealtime() {
-    supabase
-      .channel("cars-realtime")
-      .on(
-        "postgres_changes",
-        { event: "*", schema: "public", table: "cars" },
-        () => {
-          loadCarsFromSupabase();
-        }
-      )
-      .subscribe();
+    supabase.channel("cars-realtime").on("postgres_changes", { event: "*", schema: "public", table: "cars" }, () => { loadCarsFromSupabase(); }).subscribe();
   }
 
   function sortCars(type) {
@@ -981,17 +507,10 @@
 
   function renderDemo() {
     sortCars("demo");
-
     const tbody = document.querySelector("#demoTable tbody");
     const emptyState = document.getElementById("demoEmptyState");
     tbody.innerHTML = "";
-
-    if (!demoCars.length) {
-      emptyState.style.display = "block";
-    } else {
-      emptyState.style.display = "none";
-    }
-
+    emptyState.style.display = demoCars.length ? "none" : "block";
     let total = 0;
     let previousBrand = null;
     const brandSet = new Set();
@@ -999,18 +518,15 @@
     demoCars.forEach((car, index) => {
       total += Number(car.value || 0);
       if (car.brand) brandSet.add(car.brand);
-
       if (car.brand !== previousBrand) {
         const groupRow = document.createElement("tr");
         groupRow.className = "brand-group";
-        groupRow.innerHTML = `<td colspan="9">${escapeHtml(car.brand || "Ukjent merke")}</td>`;
+        groupRow.innerHTML = `<td colspan="10">${escapeHtml(car.brand || "Ukjent merke")}</td>`;
         tbody.appendChild(groupRow);
         previousBrand = car.brand;
       }
-
       const age = calculateAgeWithParser(car.date, parseDemoDateToObject);
       const ageClass = getAgeClass(age);
-
       const tr = document.createElement("tr");
       tr.innerHTML = `
         <td>${escapeHtml(car.date)}</td>
@@ -1021,24 +537,8 @@
         <td class="${ageClass}">${age === "" ? "" : age}</td>
         <td>${formatNumber(car.value)} kr</td>
         <td>${formatNumber(car.salePrice || 0)} kr</td>
-        
-        
-        <td>
-          <input
-            class="note-input"
-            type="text"
-            value="${escapeAttribute(car.note || "")}"
-            placeholder="Skriv merknad"
-            onchange="updateNote('demo', ${index}, this.value)"
-          />
-        </td>
-        <td>
-          <div class="actions">
-            <button class="small-btn" onclick="openEditModal('demo', ${index})">Rediger</button>
-            <button class="small-btn danger" onclick="deleteCar('demo', ${index})">Slett</button>
-          </div>
-        </td>
-      `;
+        <td><input class="note-input" type="text" value="${escapeAttribute(car.note || "")}" placeholder="Skriv merknad" onchange="updateNote('demo', ${index}, this.value)" /></td>
+        <td><div class="actions"><button class="small-btn" onclick="openEditModal('demo', ${index})">Rediger</button><button class="small-btn danger" onclick="deleteCar('demo', ${index})">Slett</button></div></td>`;
       tbody.appendChild(tr);
     });
 
@@ -1050,31 +550,22 @@
 
   function renderRental() {
     sortCars("rental");
-
     const tbody = document.querySelector("#rentalTable tbody");
     const emptyState = document.getElementById("rentalEmptyState");
     tbody.innerHTML = "";
-
-    if (!rentalCars.length) {
-      emptyState.style.display = "block";
-    } else {
-      emptyState.style.display = "none";
-    }
-
+    emptyState.style.display = rentalCars.length ? "none" : "block";
     let previousBrand = null;
 
     rentalCars.forEach((car, index) => {
       if (car.brand !== previousBrand) {
         const groupRow = document.createElement("tr");
         groupRow.className = "brand-group";
-        groupRow.innerHTML = `<td colspan="8">${escapeHtml(car.brand || "Ukjent merke")}</td>`;
+        groupRow.innerHTML = `<td colspan="9">${escapeHtml(car.brand || "Ukjent merke")}</td>`;
         tbody.appendChild(groupRow);
         previousBrand = car.brand;
       }
-
       const age = calculateAgeWithParser(car.date, parseRentalDateToObject);
       const ageClass = getAgeClass(age);
-
       const tr = document.createElement("tr");
       tr.innerHTML = `
         <td>${escapeHtml(car.date)}</td>
@@ -1084,53 +575,23 @@
         <td class="${ageClass}">${age === "" ? "" : age}</td>
         <td>${formatNumber(car.value)} kr</td>
         <td>${formatNumber(car.salePrice || 0)} kr</td>
-        
-        
-        <td>
-          <input
-            class="note-input"
-            type="text"
-            value="${escapeAttribute(car.note || "")}"
-            placeholder="Skriv merknad"
-            onchange="updateNote('rental', ${index}, this.value)"
-          />
-        </td>
-        <td>
-          <div class="actions">
-            <button class="small-btn" onclick="openEditModal('rental', ${index})">Rediger</button>
-            <button class="small-btn danger" onclick="deleteCar('rental', ${index})">Slett</button>
-          </div>
-        </td>
-      `;
+        <td><input class="note-input" type="text" value="${escapeAttribute(car.note || "")}" placeholder="Skriv merknad" onchange="updateNote('rental', ${index}, this.value)" /></td>
+        <td><div class="actions"><button class="small-btn" onclick="openEditModal('rental', ${index})">Rediger</button><button class="small-btn danger" onclick="deleteCar('rental', ${index})">Slett</button></div></td>`;
       tbody.appendChild(tr);
     });
   }
 
-  function renderAll() {
-    renderDemo();
-    renderRental();
-  }
+  function renderAll() { renderDemo(); renderRental(); }
 
   function importDemoFile() {
     const file = document.getElementById("demoFileInput").files[0];
-    if (!file) {
-      alert("Velg en fil først.");
-      return;
-    }
-
+    if (!file) return alert("Velg en fil først.");
     const reader = new FileReader();
-
     reader.onload = function (e) {
       const data = new Uint8Array(e.target.result);
-      const workbook = XLSX.read(data, {
-        type: "array",
-        cellDates: false,
-        raw: true
-      });
-
+      const workbook = XLSX.read(data, { type: "array", cellDates: false, raw: true });
       const sheet = workbook.Sheets[workbook.SheetNames[0]];
       const range = XLSX.utils.decode_range(sheet["!ref"]);
-
       const importedCars = [];
       let duplicateCount = 0;
       const seenRegsInThisImport = new Set();
@@ -1138,254 +599,113 @@
       for (let rowNum = range.s.r + 1; rowNum <= range.e.r; rowNum++) {
         const qCell = sheet[XLSX.utils.encode_cell({ r: rowNum, c: DEMO_IDX.Q })];
         const qCode = String(qCell?.w ?? qCell?.v ?? "").trim();
-
         if (!demoAllowedCodes.has(qCode)) continue;
-
         const regCell = sheet[XLSX.utils.encode_cell({ r: rowNum, c: DEMO_IDX.B })];
         const reg = String(regCell?.w ?? regCell?.v ?? "").trim();
         const normalizedReg = normalizeReg(reg);
-
         if (!normalizedReg) continue;
-
-        if (regExists("demo", normalizedReg) || seenRegsInThisImport.has(normalizedReg)) {
-          duplicateCount++;
-          continue;
-        }
-
+        if (regExists("demo", normalizedReg) || seenRegsInThisImport.has(normalizedReg)) { duplicateCount++; continue; }
         seenRegsInThisImport.add(normalizedReg);
-
         const dateCell = sheet[XLSX.utils.encode_cell({ r: rowNum, c: DEMO_IDX.A })];
         const brandCell = sheet[XLSX.utils.encode_cell({ r: rowNum, c: DEMO_IDX.C })];
         const modelCell = sheet[XLSX.utils.encode_cell({ r: rowNum, c: DEMO_IDX.D })];
         const valueCell = sheet[XLSX.utils.encode_cell({ r: rowNum, c: DEMO_IDX.M })];
         const serialCell = sheet[XLSX.utils.encode_cell({ r: rowNum, c: DEMO_IDX.AE })];
-
-        const rawDateValue =
-          dateCell?.w !== undefined && dateCell?.w !== ""
-            ? dateCell.w
-            : dateCell?.v;
-
-        importedCars.push({
-          id: generateId(),
-          date: formatDemoDateForDisplay(rawDateValue),
-          reg: reg,
-          brand: normalizeBrand(String(brandCell?.w ?? brandCell?.v ?? "").trim()),
-          model: String(modelCell?.w ?? modelCell?.v ?? "").trim(),
-          serial: String(serialCell?.w ?? serialCell?.v ?? "").trim(),
-          value: parseRestValue(valueCell?.w ?? valueCell?.v ?? ""),
-          salePrice: 0,
-          note: ""
-        });
+        const rawDateValue = dateCell?.w !== undefined && dateCell?.w !== "" ? dateCell.w : dateCell?.v;
+        importedCars.push({ id: generateId(), date: formatDemoDateForDisplay(rawDateValue), reg, brand: normalizeBrand(String(brandCell?.w ?? brandCell?.v ?? "").trim()), model: String(modelCell?.w ?? modelCell?.v ?? "").trim(), serial: String(serialCell?.w ?? serialCell?.v ?? "").trim(), value: parseRestValue(valueCell?.w ?? valueCell?.v ?? ""), salePrice: 0, note: "" });
       }
 
       demoLastDuplicateCount = duplicateCount;
-
-      if (!importedCars.length && duplicateCount > 0) {
-        document.getElementById("demoImportResult").textContent =
-          `Ingen nye demobiler ble importert. ${duplicateCount} dubletter ble hoppet over.`;
-        renderDemo();
-        return;
-      }
-
-      if (!importedCars.length) {
-        document.getElementById("demoImportResult").textContent =
-          "Ingen biler ble importert. Kontroller filen og filterkodene i kolonne Q.";
-        renderDemo();
-        return;
-      }
-
-      saveManyCarsToSupabase("demo", importedCars).then((ok) => {
-        if (!ok) return;
-        document.getElementById("demoImportResult").textContent =
-          `${importedCars.length} demobiler ble importert. ${duplicateCount} dubletter ble hoppet over.`;
-      });
+      if (!importedCars.length && duplicateCount > 0) { document.getElementById("demoImportResult").textContent = `Ingen nye demobiler ble importert. ${duplicateCount} dubletter ble hoppet over.`; renderDemo(); return; }
+      if (!importedCars.length) { document.getElementById("demoImportResult").textContent = "Ingen biler ble importert. Kontroller filen og filterkodene i kolonne Q."; renderDemo(); return; }
+      saveManyCarsToSupabase("demo", importedCars).then(ok => { if (!ok) return; document.getElementById("demoImportResult").textContent = `${importedCars.length} demobiler ble importert. ${duplicateCount} dubletter ble hoppet over.`; });
     };
-
     reader.readAsArrayBuffer(file);
   }
 
   function importRentalFile() {
     const file = document.getElementById("rentalFileInput").files[0];
-    if (!file) {
-      alert("Velg en fil først.");
-      return;
-    }
-
+    if (!file) return alert("Velg en fil først.");
     const reader = new FileReader();
-
     reader.onload = function (e) {
       const data = new Uint8Array(e.target.result);
       const workbook = XLSX.read(data, { type: "array" });
       const sheet = workbook.Sheets[workbook.SheetNames[0]];
       const rows = XLSX.utils.sheet_to_json(sheet, { header: 1, raw: true, defval: "" });
-
       const importedCars = [];
       let duplicateCount = 0;
       const seenRegsInThisImport = new Set();
 
       for (let i = 1; i < rows.length; i++) {
         const row = rows[i] || [];
-
         const reg = String(row[RENTAL_IDX.E] ?? "").trim();
         const normalizedReg = normalizeReg(reg);
-
         if (!normalizedReg) continue;
-
-        // Hvis regnummer finnes fra før skal bilen OPPDATERES i stedet for å hoppes over
-        if (seenRegsInThisImport.has(normalizedReg)) {
-          duplicateCount++;
-          continue;
-        }
-
+        if (seenRegsInThisImport.has(normalizedReg)) { duplicateCount++; continue; }
         seenRegsInThisImport.add(normalizedReg);
-
-        importedCars.push({
-          id: generateId(),
-          date: formatRentalDateForDisplay(row[RENTAL_IDX.H]),
-          reg: reg,
-          brand: normalizeBrand(row[RENTAL_IDX.F]),
-          model: String(row[RENTAL_IDX.G] ?? "").trim(),
-          serial: "",
-          value: normalizeRentalValue(row[RENTAL_IDX.R]),
-          salePrice: 0,
-          note: ""
-        });
+        importedCars.push({ id: generateId(), date: formatRentalDateForDisplay(row[RENTAL_IDX.H]), reg, brand: normalizeBrand(row[RENTAL_IDX.F]), model: String(row[RENTAL_IDX.G] ?? "").trim(), serial: "", value: normalizeRentalValue(row[RENTAL_IDX.R]), salePrice: 0, note: "" });
       }
 
       rentalLastDuplicateCount = duplicateCount;
-
-      if (!importedCars.length && duplicateCount > 0) {
-        document.getElementById("rentalImportResult").textContent =
-          `Ingen nye utleiebiler ble importert. ${duplicateCount} dubletter ble hoppet over.`;
-        renderRental();
-        return;
-      }
-
-      if (!importedCars.length) {
-        document.getElementById("rentalImportResult").textContent =
-          "Ingen biler ble importert fra bilutleie-filen.";
-        renderRental();
-        return;
-      }
-
-      saveManyCarsToSupabase("rental", importedCars).then((ok) => {
-        if (!ok) return;
-        document.getElementById("rentalImportResult").textContent =
-          `${importedCars.length} utleiebiler ble importert. ${duplicateCount} dubletter ble hoppet over.`;
-      });
+      if (!importedCars.length && duplicateCount > 0) { document.getElementById("rentalImportResult").textContent = `Ingen nye utleiebiler ble importert. ${duplicateCount} dubletter ble hoppet over.`; renderRental(); return; }
+      if (!importedCars.length) { document.getElementById("rentalImportResult").textContent = "Ingen biler ble importert fra bilutleie-filen."; renderRental(); return; }
+      saveManyCarsToSupabase("rental", importedCars).then(ok => { if (!ok) return; document.getElementById("rentalImportResult").textContent = `${importedCars.length} utleiebiler ble importert. ${duplicateCount} dubletter ble hoppet over.`; });
     };
-
     reader.readAsArrayBuffer(file);
   }
 
-  async function updateNote(type, index, value) {
-    const list = getCars(type);
-    const car = list[index];
-    if (!car) return;
-
-    car.note = value;
-    await updateCarNoteInSupabase(car.id, value);
-  }
-
-  async function deleteCar(type, index) {
-    const list = getCars(type);
-    const car = list[index];
-    if (!car) return;
-
-    const name = [car.brand, car.reg].filter(Boolean).join(" - ");
-    if (!confirm(`Slette bilen ${name || ""}?`)) return;
-
-    await deleteCarFromSupabase(car.id);
-  }
-
-  async function clearDemoData() {
-    if (!confirm("Er du sikker på at du vil slette alle demobiler?")) return;
-    demoLastDuplicateCount = 0;
-    document.getElementById("demoImportResult").textContent = "";
-    await clearCarsByType("demo");
-  }
-
-  async function clearRentalData() {
-    if (!confirm("Er du sikker på at du vil slette alle utleiebiler?")) return;
-    rentalLastDuplicateCount = 0;
-    document.getElementById("rentalImportResult").textContent = "";
-    await clearCarsByType("rental");
-  }
+  async function updateNote(type, index, value) { const list = getCars(type); const car = list[index]; if (!car) return; car.note = value; await updateCarNoteInSupabase(car.id, value); }
+  async function deleteCar(type, index) { const list = getCars(type); const car = list[index]; if (!car) return; const name = [car.brand, car.reg].filter(Boolean).join(" - "); if (!confirm(`Slette bilen ${name || ""}?`)) return; await deleteCarFromSupabase(car.id); }
+  async function clearDemoData() { if (!confirm("Er du sikker på at du vil slette alle demobiler?")) return; demoLastDuplicateCount = 0; document.getElementById("demoImportResult").textContent = ""; await clearCarsByType("demo"); }
+  async function clearRentalData() { if (!confirm("Er du sikker på at du vil slette alle utleiebiler?")) return; rentalLastDuplicateCount = 0; document.getElementById("rentalImportResult").textContent = ""; await clearCarsByType("rental"); }
 
   function openAddModal(type) {
-    modalMode = type;
-    modalAction = "add";
-    modalEditIndex = null;
-
-    document.getElementById("modalTitle").textContent =
-      type === "demo" ? "Legg til demobil manuelt" : "Legg til utleiebil manuelt";
-
+    modalMode = type; modalAction = "add"; modalEditIndex = null;
+    document.getElementById("modalTitle").textContent = type === "demo" ? "Legg til demobil manuelt" : "Legg til utleiebil manuelt";
     document.getElementById("modalDate").value = "";
     document.getElementById("modalReg").value = "";
     document.getElementById("modalBrand").value = "";
     document.getElementById("modalModel").value = "";
     document.getElementById("modalSerial").value = "";
     document.getElementById("modalValue").value = "";
-    document.getElementById("modalNote").value = "";
     document.getElementById("modalSalePrice").value = "";
-
+    document.getElementById("modalNote").value = "";
     document.getElementById("serialField").style.display = type === "demo" ? "flex" : "none";
     document.getElementById("modalValueLabel").textContent = type === "demo" ? "Restverdi" : "Forhandlerpris";
     document.getElementById("carModal").style.display = "flex";
   }
 
   function openEditModal(type, index) {
-    modalMode = type;
-    modalAction = "edit";
-    modalEditIndex = index;
-
+    modalMode = type; modalAction = "edit"; modalEditIndex = index;
     const car = getCars(type)[index];
-
-    document.getElementById("modalTitle").textContent =
-      type === "demo" ? "Rediger demobil" : "Rediger utleiebil";
-
+    document.getElementById("modalTitle").textContent = type === "demo" ? "Rediger demobil" : "Rediger utleiebil";
     document.getElementById("modalDate").value = car.date || "";
     document.getElementById("modalReg").value = car.reg || "";
     document.getElementById("modalBrand").value = car.brand || "";
     document.getElementById("modalModel").value = car.model || "";
     document.getElementById("modalSerial").value = car.serial || "";
     document.getElementById("modalValue").value = car.value || "";
-    document.getElementById("modalNote").value = car.note || "";
     document.getElementById("modalSalePrice").value = car.salePrice || "";
-
+    document.getElementById("modalNote").value = car.note || "";
     document.getElementById("serialField").style.display = type === "demo" ? "flex" : "none";
     document.getElementById("modalValueLabel").textContent = type === "demo" ? "Restverdi" : "Forhandlerpris";
     document.getElementById("carModal").style.display = "flex";
   }
 
-  function closeCarModal() {
-    document.getElementById("carModal").style.display = "none";
-  }
+  function closeCarModal() { document.getElementById("carModal").style.display = "none"; }
 
   async function saveCarModal() {
     const reg = document.getElementById("modalReg").value.trim();
-
     if (modalAction === "edit") {
-      if (reg && regExists(modalMode, reg, modalEditIndex)) {
-        alert("Dette regnummeret finnes allerede i oversikten.");
-        return;
-      }
+      if (reg && regExists(modalMode, reg, modalEditIndex)) { alert("Dette regnummeret finnes allerede i oversikten."); return; }
     } else {
-      if (reg && regExists(modalMode, reg)) {
-        alert("Dette regnummeret finnes allerede i oversikten.");
-        return;
-      }
+      if (reg && regExists(modalMode, reg)) { alert("Dette regnummeret finnes allerede i oversikten."); return; }
     }
-
     const dateValue = document.getElementById("modalDate").value.trim();
-    const formattedDate = modalMode === "demo"
-      ? formatDemoDateForDisplay(dateValue)
-      : formatRentalDateForDisplay(dateValue);
-
     const carData = {
       id: modalAction === "edit" ? getCars(modalMode)[modalEditIndex].id : generateId(),
-      date: formattedDate,
-      reg: reg,
+      date: modalMode === "demo" ? formatDemoDateForDisplay(dateValue) : formatRentalDateForDisplay(dateValue),
+      reg,
       brand: normalizeBrand(document.getElementById("modalBrand").value),
       model: document.getElementById("modalModel").value.trim(),
       serial: modalMode === "demo" ? document.getElementById("modalSerial").value.trim() : "",
@@ -1393,21 +713,26 @@
       salePrice: parseRestValue(document.getElementById("modalSalePrice").value),
       note: document.getElementById("modalNote").value.trim()
     };
-
-    if (!carData.date && !carData.reg && !carData.brand && !carData.model && !carData.value && !carData.serial) {
-      alert("Legg inn minst noe informasjon om bilen før du lagrer.");
-      return;
-    }
-
+    if (!carData.date && !carData.reg && !carData.brand && !carData.model && !carData.value && !carData.serial && !carData.salePrice) { alert("Legg inn minst noe informasjon om bilen før du lagrer."); return; }
     const ok = await saveCarToSupabase(modalMode, carData);
     if (!ok) return;
-
     closeCarModal();
   }
 
-  document.getElementById("carModal").addEventListener("click", function (e) {
-    if (e.target === this) closeCarModal();
-  });
-
+  document.getElementById("carModal").addEventListener("click", function (e) { if (e.target === this) closeCarModal(); });
   window.importDemoFile = importDemoFile;
-  window.
+  window.importRentalFile = importRentalFile;
+  window.openAddModal = openAddModal;
+  window.openEditModal = openEditModal;
+  window.closeCarModal = closeCarModal;
+  window.saveCarModal = saveCarModal;
+  window.updateNote = updateNote;
+  window.deleteCar = deleteCar;
+  window.clearDemoData = clearDemoData;
+  window.clearRentalData = clearRentalData;
+
+  subscribeRealtime();
+  loadCarsFromSupabase();
+</script>
+</body>
+</html>
