@@ -360,8 +360,7 @@
               <th>Dager</th>
               <th>Restverdi</th>
               <th>Salgspris</th>
-              <th>Bilder</th>
-              <th>Merknad</th>              <th>Merknad</th>
+              <th>Merknad</th>
               <th>Handlinger</th>
             </tr>
           </thead>
@@ -396,7 +395,6 @@
               <th>Dager</th>
               <th>Forhandlerpris</th>
               <th>Salgspris</th>
-              <th>Bilder</th>
               <th>Merknad</th>
               <th>Handlinger</th>
             </tr>
@@ -1023,12 +1021,8 @@
         <td class="${ageClass}">${age === "" ? "" : age}</td>
         <td>${formatNumber(car.value)} kr</td>
         <td>${formatNumber(car.salePrice || 0)} kr</td>
-        <td style="text-align:center">
-          <input type="checkbox" ${car.images ? "checked" : ""} onchange="toggleImages('rental', ${index}, this.checked)" />
-        </td>
-        <td style="text-align:center">
-          <input type="checkbox" ${car.images ? "checked" : ""} onchange="toggleImages('demo', ${index}, this.checked)" />
-        </td>
+        
+        
         <td>
           <input
             class="note-input"
@@ -1090,12 +1084,8 @@
         <td class="${ageClass}">${age === "" ? "" : age}</td>
         <td>${formatNumber(car.value)} kr</td>
         <td>${formatNumber(car.salePrice || 0)} kr</td>
-        <td style="text-align:center">
-          <input type="checkbox" ${car.images ? "checked" : ""} onchange="toggleImages('rental', ${index}, this.checked)" />
-        </td>
-        <td style="text-align:center">
-          <input type="checkbox" ${car.images ? "checked" : ""} onchange="toggleImages('demo', ${index}, this.checked)" />
-        </td>
+        
+        
         <td>
           <input
             class="note-input"
